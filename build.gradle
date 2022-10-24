@@ -1,0 +1,45 @@
+apply plugin: 'application'
+
+application{
+  mainClass='com.project.Sampletest'
+}
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+
+    //implementation fileTree('jars//selenium') { include '*.jar' }
+       // implementation fileTree('jars//selenium') { include '*.jar' }
+        
+    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
+implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.5.0'
+// https://mvnrepository.com/artifact/org.testng/testng
+implementation group: 'org.testng', name: 'testng', version: '5.14'
+implementation group: 'ru.yandex.qatools.ashot', name: 'ashot', version: '1.5.4'
+
+}
+
+
+tasks.named('jar'){
+
+   manifest {
+    attributes('Main-Class': 'com.project.Sampletest')
+  }
+
+}
+
+test{
+
+  useTestNG(){
+  suites 'testng.xml'
+  useDefaultListeners = true
+  outputDirectory=file("$projectDir/reports")
+  }
+
+}
+
+
+
+  
